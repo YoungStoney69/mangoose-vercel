@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 export interface Pets extends mongoose.Document {
+  _id: string;
   name: string;
   owner_name: string;
   species: string;
