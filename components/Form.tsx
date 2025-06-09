@@ -134,16 +134,9 @@ const Form = ({ formId, petForm, forNewPet = true }: Props) => {
   };
 
   return (
-<div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-4">
-    <form id={formId} onSubmit={handleSubmit} className="space-y-4">
-      <h2 className="text-2xl font-bold text-center text-indigo-600 mb-4">
-        {forNewPet ? "Add a Pet" : "Edit Pet"}
-      </h2>
-
-      <div>
-        <label htmlFor="name" className="block font-medium">
-          Name
-        </label>
+    <>
+      <form id={formId} onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
         <input
           type="text"
           maxLength={20}
@@ -151,14 +144,9 @@ const Form = ({ formId, petForm, forNewPet = true }: Props) => {
           value={form.name}
           onChange={handleChange}
           required
-          className="w-full border border-gray-300 rounded px-3 py-2"
         />
-      </div>
 
-      <div>
-        <label htmlFor="owner_name" className="block font-medium">
-          Owner
-        </label>
+        <label htmlFor="owner_name">Owner</label>
         <input
           type="text"
           maxLength={20}
@@ -166,14 +154,9 @@ const Form = ({ formId, petForm, forNewPet = true }: Props) => {
           value={form.owner_name}
           onChange={handleChange}
           required
-          className="w-full border border-gray-300 rounded px-3 py-2"
         />
-      </div>
 
-      <div>
-        <label htmlFor="species" className="block font-medium">
-          Species
-        </label>
+        <label htmlFor="species">Species</label>
         <input
           type="text"
           maxLength={30}
@@ -181,104 +164,69 @@ const Form = ({ formId, petForm, forNewPet = true }: Props) => {
           value={form.species}
           onChange={handleChange}
           required
-          className="w-full border border-gray-300 rounded px-3 py-2"
         />
-      </div>
 
-      <div>
-        <label htmlFor="age" className="block font-medium">
-          Age
-        </label>
+        <label htmlFor="age">Age</label>
         <input
           type="number"
           name="age"
           value={form.age}
           onChange={handleChange}
-          className="w-full border border-gray-300 rounded px-3 py-2"
         />
-      </div>
 
-      <div className="flex items-center space-x-2">
+        <label htmlFor="poddy_trained">Potty Trained</label>
         <input
           type="checkbox"
           name="poddy_trained"
           checked={form.poddy_trained}
           onChange={handleChange}
         />
-        <label htmlFor="poddy_trained" className="font-medium">
-          Potty Trained
-        </label>
-      </div>
 
-      <div>
-        <label htmlFor="diet" className="block font-medium">
-          Diet
-        </label>
+        <label htmlFor="diet">Diet</label>
         <textarea
           name="diet"
           maxLength={60}
           value={form.diet}
           onChange={handleChange}
-          className="w-full border border-gray-300 rounded px-3 py-2"
         />
-      </div>
 
-      <div>
-        <label htmlFor="image_url" className="block font-medium">
-          Image URL
-        </label>
+        <label htmlFor="image_url">Image URL</label>
         <input
           type="url"
           name="image_url"
           value={form.image_url}
           onChange={handleChange}
           required
-          className="w-full border border-gray-300 rounded px-3 py-2"
         />
-      </div>
 
-      <div>
-        <label htmlFor="likes" className="block font-medium">
-          Likes
-        </label>
+        <label htmlFor="likes">Likes</label>
         <textarea
           name="likes"
           maxLength={60}
           value={form.likes}
           onChange={handleChange}
-          className="w-full border border-gray-300 rounded px-3 py-2"
         />
-      </div>
 
-      <div>
-        <label htmlFor="dislikes" className="block font-medium">
-          Dislikes
-        </label>
+        <label htmlFor="dislikes">Dislikes</label>
         <textarea
           name="dislikes"
           maxLength={60}
           value={form.dislikes}
           onChange={handleChange}
-          className="w-full border border-gray-300 rounded px-3 py-2"
         />
+
+        <button type="submit" className="btn">
+          Submit
+        </button>
+      </form>
+      <p>{message}</p>
+      <div>
+        {Object.keys(errors).map((err, index) => (
+          <li key={index}>{err}</li>
+        ))}
       </div>
-
-      <button
-        type="submit"
-        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded"
-      >
-        Submit
-      </button>
-    </form>
-
-    {message && <p className="text-red-500">{message}</p>}
-
-    <ul className="text-red-500 list-disc list-inside">
-      {Object.keys(errors).map((err, index) => (
-        <li key={index}>{err}</li>
-      ))}
-    </ul>
-  </div>
+    </>
   );
 };
+
 export default Form;
